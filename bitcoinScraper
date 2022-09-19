@@ -1,0 +1,51 @@
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+StartDate=2015-01-01
+today= date.today()
+
+#link the website being scrapped dynamically modyfied based on the desired date range
+csv_url="https://trends.google.com/trends/explore?date="StartDate+"%"+today+"&q=bitcoin"
+#Example for Setember 19th 2022: "https://trends.google.com/trends/explore?date=2015-01-01%202022-09-19&q=bitcoin"
+
+#Put the data into a easier to parse format
+req = requests.get(csv_url)
+soup = BeautifulSoup(req.content, "html.parser")
+
+#modify the date to be the first of the month, matching the format of the original source
+today= today - MonthBegin(1)
+
+#get number of months since 2015 Jan 1st
+months = diff_month(today-StartDate) in (months)
+
+#open file for writing
+csv_file = open('bitcoinMentions.csv', 'wb')
+#if initiating:
+#Extra formmating text for column names
+	csv_file.write("MonthYear", "Times Bitcoin is mentioned")
+#First tr contains x y1 info but doesn't have th embedded inside so wont be caught by the soup. Other than this no other tr tags used so
+#We iterate for an amount of tr tags equal to months since the start date, since the site groups by month by default so we filter for tr:nth-of-type(month+1)
+#For each tr only second td has needed data, first is just which month which we already have so we grab td:nth-of-type(2)
+#Then we write to csv, comma seperating the values into two columns
+	for month in range [0, months]		
+		date = (getMonth(Jan 1st, 2015+ addMonths(month)
+		bitcoinMentions=(soup.select(tr:nth-of-type(month+1) > td:nth-of-type(2)).contents)
+		csv_file.write(date, bitcoinMentions)
+		
+#if updating similar process but no iteration needed, just get last date
+	date = dateList.append (CurrentDate)
+	bitcoinMentions = mentionList.append(soup.select("tr:nth-of-type(month+1)" > td:nth-of-type(2)).contents)
+	csv_file.write(date, bitcoinMentions)
+
+#close file as task is complete
+csv_file.close()
+
+
+
+
+
+
+
+
+
